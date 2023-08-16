@@ -22,8 +22,7 @@ jobs:
       - save_cache: 
           paths: 
             - ./venv 
-          key: v1-dependencies-{{ checksum \"requirements.txt\" }}
-      # run lint!
+          key: v1-dependencies-{{ checksum \"requirements.txt\" }
       - run:
           name: run lint
           command: |
