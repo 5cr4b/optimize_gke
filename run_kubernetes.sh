@@ -9,15 +9,16 @@ dockerpath="sevencrabs/nambv6"
 
 # Step 2
 # Run the Docker Hub container with kubernetes
-kubectl run mlmicroservice\
-    --generator=run-pod/v1\
-    --image=$dockerpath\
-    --port=80 --labels app=mlmicroservice
+#kubectl run microservice\
+#    --generator=run-pod/v1\
+#    --image=$dockerpath\
+#    --port=80 --labels app=mlmicroservice
+kubectl run microservice -n udacity --image=$dockerpath --port=80 --labels app=mlmicroservice
 
 # Step 3:
 # List kubernetes pods
-kubectl get pods
+kubectl get pods -n udacity
 
 # Step 4:
 # Forward the container port to a host
-kubectl port-forward mlmicroservice 8000:80
+kubectl create svc nodeport app-service --tcp 8000:80 --node-port 31800 -n udacity
