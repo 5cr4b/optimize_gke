@@ -6,10 +6,10 @@ jobs:
     working_directory: ~/repo
     steps: 
       - checkout
-      - restore_cache: 
-          keys: 
-            - "v1-dependencies-{{ checksum \"requirements.txt\" }}"
-            - v1-dependencies-
+      #- restore_cache: 
+      #    keys: 
+      #      - "v1-dependencies-{{ checksum \"requirements.txt\" }}"
+      #      - v1-dependencies-
       - run: 
           command: |
               python3 -m venv venv
@@ -19,10 +19,10 @@ jobs:
               wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
               chmod +x /bin/hadolint
           name: "install dependencies"
-      - save_cache: 
-          paths: 
-            - ./venv 
-          key: v1-dependencies-{{ checksum \"requirements.txt\" }
+      #- save_cache: 
+      #    paths: 
+      #      - ./venv 
+      #    key: v1-dependencies-{{ checksum \"requirements.txt\" }
       - run:
           name: run lint
           command: |
